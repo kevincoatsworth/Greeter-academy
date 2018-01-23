@@ -2,6 +2,22 @@ package app
 
 import scala.io.StdIn
 
+abstract class BankAccount(accountNumber : String, val balance : Double) {
+
+  def withdraw(amount: Double) : BankAccount
+
+  def deposit(amount: Double) : BankAccount
+
+}
+
+final class SavingsAccount(accountNumber: String, balance: Double) extends BankAccount(accountNumber, balance) {
+
+  override def withdraw(amount: Double): BankAccount = new SavingsAccount(accountNumber, balance - amount)
+
+  override def deposit(amount: Double): BankAccount = new SavingsAccount(accountNumber, balance + amount)
+
+}
+
 class Person(name : String, age : Int) {
 
   private val years : String = if(age == 1) "year"
@@ -30,6 +46,12 @@ object Prompt {
 }
 
   object GreeterApplication extends App {
+
+    val savingsAccount = new SavingsAccount("12345", 100.00)
+    val savingsPlus100 = savingsAccount.deposit(50.00)
+
+    println(savingsAccount.balance)
+    println(savingsPlus100.balance)
 
     val name = Prompt.ask("What is your name? ")
 

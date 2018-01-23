@@ -22,7 +22,7 @@ class Person(name : String) {
 
 object Prompt {
 
-  def ask(message : String) = StdIn.readLine(message)
+  def ask(message : String) : String = StdIn.readLine(message)
 
 }
 

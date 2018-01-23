@@ -1,2 +1,5 @@
 .idea/
 target/
+src/main/scala/app/Funtimes.scala
+src/main/scala/app/Funtimes2.scala
+src/main/scala/app/Funtimes3.scala
